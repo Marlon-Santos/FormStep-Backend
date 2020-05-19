@@ -1,9 +1,10 @@
 package com.gft.formStep.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,11 +12,12 @@ import java.util.Objects;
 public class CotacaoSalvado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
     @NotNull
     private Long valorCotacao;
     @Temporal(TemporalType.DATE)
-    private Date dataCotacao;
+    private Date dataCotacao = new Date();
     @NotNull
     private Long valorProdutoOfertado;
     private Long valorTotalOferta;

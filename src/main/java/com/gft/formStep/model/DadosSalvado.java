@@ -1,7 +1,10 @@
 package com.gft.formStep.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,8 +12,11 @@ import java.util.Objects;
 public class DadosSalvado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private String origem;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String causa;
     private String local;
     private String produto;
@@ -23,7 +29,8 @@ public class DadosSalvado {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHoraCadastro;
     private String observacao;
-    @OneToOne(mappedBy = "dadosSalvado") @JsonIgnore
+    @OneToOne(mappedBy = "dadosSalvado")
+    @JsonIgnore
     private Salvado salvado;
 
     public Salvado getSalvado() {
@@ -57,6 +64,10 @@ public class DadosSalvado {
 
     public void setCausa(String causa) {
         this.causa = causa;
+    }
+
+    public void setDataHoraCadastro(Date dataHoraCadastro) {
+        this.dataHoraCadastro = dataHoraCadastro;
     }
 
     public String getLocal() {

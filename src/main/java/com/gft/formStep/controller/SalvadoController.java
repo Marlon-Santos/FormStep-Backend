@@ -13,19 +13,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("api/salvado/dadosSalvado")
 public class SalvadoController {
     @Autowired
     private SalvadoRepository salvadoRepository;
 
     @GetMapping
-    @Transactional
     public List<Salvado> test() {
-        Salvado test = new Salvado();
-        test.setCotacaoSalvado(new CotacaoSalvado());
-        test.setDadosSalvado(new DadosSalvado());
-        this.salvadoRepository.save(test);
         return this.salvadoRepository.findAll();
-
     }
 }
