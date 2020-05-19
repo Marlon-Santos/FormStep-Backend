@@ -26,8 +26,9 @@ public class CotacaoSalvadoController {
     @Transactional
     public ResponseEntity<Salvado> cotacaoSalvadoPost( @RequestBody @Valid CotacaoSalvado cotacaoSalvado, UriComponentsBuilder uriBuilder) throws Exception {
         Salvado salvado = new Salvado();
+        DadosSalvado dadosSalvado = new DadosSalvado();
+        salvado.setDadosSalvado(dadosSalvado);
         salvado.setCotacaoSalvado(cotacaoSalvado);
-        salvado.setDadosSalvado(new DadosSalvado());
         salvadoRepository.save(salvado);
         URI uri = uriBuilder.path("{id}").buildAndExpand(salvado.getId()).toUri();
         return ResponseEntity.created(uri).body(salvado);

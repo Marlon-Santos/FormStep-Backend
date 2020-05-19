@@ -1,6 +1,8 @@
-package com.gft.formStep.model;
+package com.gft.formStep.controller.form;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gft.formStep.model.DadosSalvado;
+import com.gft.formStep.model.Salvado;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,63 +10,36 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity
-public class DadosSalvado {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
-    private Long id;
+public class DadosSalvadoForm {
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private String origem;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String causa;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String local;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String produto;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String qualidade;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private Double quantidade;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String meta;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private Long vagao;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private Long sindicancia;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String nome;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHoraCadastro;
+    @NotNull(message = "testtest") @NotBlank(message = "test2")
     private String observacao;
-    @OneToOne(mappedBy = "dadosSalvado")
-    @JsonIgnore
-    private Salvado salvado;
 
-    public DadosSalvado() {
-    }
-
-    public DadosSalvado(String origem, String causa, String local, String produto, String qualidade
-            ,Double quantidade, String meta, Long vagao, Long sindicancia, String nome, Date dataHoraCadastro,
-                        String observacao) {
-        this.origem = origem;
-        this.causa = causa;
-        this.local = local;
-        this.produto = produto;
-        this.qualidade = qualidade;
-        this.quantidade = quantidade;
-        this.meta = meta;
-        this.vagao = vagao;
-        this.sindicancia = sindicancia;
-        this.nome = nome;
-        this.dataHoraCadastro = dataHoraCadastro;
-        this.observacao = observacao;
-    }
-
-    public Salvado getSalvado() {
-        return salvado;
-    }
-
-    public void setSalvado(Salvado salvado) {
-        this.salvado = salvado;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public DadosSalvado convert(){
+        return new DadosSalvado(origem,causa,local,produto,qualidade,quantidade,meta,vagao,sindicancia,nome
+                ,dataHoraCadastro,observacao);
     }
 
     public String getOrigem() {
@@ -163,17 +138,4 @@ public class DadosSalvado {
         this.observacao = observacao;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DadosSalvado that = (DadosSalvado) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

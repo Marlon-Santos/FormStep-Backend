@@ -14,13 +14,16 @@ public class CotacaoSalvado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
-    @NotNull
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private Long valorCotacao;
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     @Temporal(TemporalType.DATE)
     private Date dataCotacao = new Date();
-    @NotNull
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private Long valorProdutoOfertado;
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private Long valorTotalOferta;
+    @NotNull(message = "testtest") @NotBlank(message = "test")
     private Long diferenca;
     @OneToOne(mappedBy = "cotacaoSalvado") @JsonIgnore
     private Salvado salvado;

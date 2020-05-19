@@ -1,5 +1,6 @@
 package com.gft.formStep.controller;
 
+import com.gft.formStep.controller.form.DadosSalvadoForm;
 import com.gft.formStep.model.DadosSalvado;
 import com.gft.formStep.model.Salvado;
 import com.gft.formStep.repository.SalvadoRepository;
@@ -19,11 +20,13 @@ public class DadosSalvadoController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Salvado> dadosSalvadoPost(@PathVariable Long id, @RequestBody @Valid DadosSalvado dadosSalvado)throws Exception{
+    public ResponseEntity<Salvado> dadosSalvadoPost(@PathVariable Long id, @RequestBody @Valid DadosSalvadoForm dadosSalvadoForm)throws Exception{
         Optional<Salvado> optionalSalvado = salvadoRepository.findById(id);
         Salvado salvado;
+        DadosSalvado dadosSalvado;
         if (optionalSalvado.isPresent()) {
             salvado = optionalSalvado.get();
+            dadosSalvado = dadosSalvadoForm.convert();
             dadosSalvado.setId(salvado.getDadosSalvado().getId());
             salvado.setDadosSalvado(dadosSalvado);
             salvadoRepository.save(salvado);
