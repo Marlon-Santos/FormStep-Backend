@@ -6,10 +6,8 @@ import com.gft.formStep.model.Salvado;
 import com.gft.formStep.repository.SalvadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
@@ -24,7 +22,7 @@ public class CotacaoSalvadoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Salvado> cotacaoSalvadoPost( @RequestBody @Valid CotacaoSalvado cotacaoSalvado, UriComponentsBuilder uriBuilder) throws Exception {
+    public ResponseEntity<Salvado> cotacaoSalvadoPost(@RequestBody @Valid CotacaoSalvado cotacaoSalvado, UriComponentsBuilder uriBuilder) throws Exception {
         Salvado salvado = new Salvado();
         DadosSalvado dadosSalvado = new DadosSalvado();
         salvado.setDadosSalvado(dadosSalvado);

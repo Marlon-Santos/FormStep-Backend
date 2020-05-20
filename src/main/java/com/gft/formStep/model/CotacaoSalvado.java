@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,18 +15,21 @@ public class CotacaoSalvado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
     private Long valorCotacao;
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
     @Temporal(TemporalType.DATE)
     private Date dataCotacao = new Date();
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
     private Long valorProdutoOfertado;
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
     private Long valorTotalOferta;
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
     private Long diferenca;
-    @OneToOne(mappedBy = "cotacaoSalvado") @JsonIgnore
+    @OneToMany(mappedBy = "cotacaoSalvado", cascade = CascadeType.ALL)
+    private List<ArquivoControlePerdas> arquivoControlePerdas;
+    @OneToOne(mappedBy = "cotacaoSalvado")
+    @JsonIgnore
     private Salvado salvado;
 
     public Long getId() {
@@ -82,6 +86,14 @@ public class CotacaoSalvado {
 
     public void setSalvado(Salvado salvado) {
         this.salvado = salvado;
+    }
+
+    public List<ArquivoControlePerdas> getArquivoControlePerdas() {
+        return arquivoControlePerdas;
+    }
+
+    public void setArquivoControlePerdas(List<ArquivoControlePerdas> arquivoControlePerdas) {
+        this.arquivoControlePerdas = arquivoControlePerdas;
     }
 
     @Override

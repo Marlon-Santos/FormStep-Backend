@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,10 +24,8 @@ public class DadosSalvado {
     private String meta;
     private Long vagao;
     private Long sindicancia;
-    private String nome;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataHoraCadastro;
-    private String observacao;
+    @OneToMany(mappedBy = "dadosSalvado", cascade = CascadeType.ALL)
+    private List<ArquivoControlePerdas> arquivoControlePerdas;
     @OneToOne(mappedBy = "dadosSalvado")
     @JsonIgnore
     private Salvado salvado;
@@ -35,8 +34,7 @@ public class DadosSalvado {
     }
 
     public DadosSalvado(String origem, String causa, String local, String produto, String qualidade
-            ,Double quantidade, String meta, Long vagao, Long sindicancia, String nome, Date dataHoraCadastro,
-                        String observacao) {
+            , Double quantidade, String meta, Long vagao, Long sindicancia, List<ArquivoControlePerdas> arquivoControlePerdas) {
         this.origem = origem;
         this.causa = causa;
         this.local = local;
@@ -46,9 +44,7 @@ public class DadosSalvado {
         this.meta = meta;
         this.vagao = vagao;
         this.sindicancia = sindicancia;
-        this.nome = nome;
-        this.dataHoraCadastro = dataHoraCadastro;
-        this.observacao = observacao;
+        this.arquivoControlePerdas = arquivoControlePerdas;
     }
 
     public Salvado getSalvado() {
@@ -81,10 +77,6 @@ public class DadosSalvado {
 
     public void setCausa(String causa) {
         this.causa = causa;
-    }
-
-    public void setDataHoraCadastro(Date dataHoraCadastro) {
-        this.dataHoraCadastro = dataHoraCadastro;
     }
 
     public String getLocal() {
@@ -143,24 +135,12 @@ public class DadosSalvado {
         this.sindicancia = sindicancia;
     }
 
-    public String getNome() {
-        return nome;
+    public List<ArquivoControlePerdas> getArquivoControlePerdas() {
+        return arquivoControlePerdas;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Date getDataHoraCadastro() {
-        return dataHoraCadastro;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setArquivoControlePerdas(List<ArquivoControlePerdas> arquivoControlePerdas) {
+        this.arquivoControlePerdas = arquivoControlePerdas;
     }
 
 

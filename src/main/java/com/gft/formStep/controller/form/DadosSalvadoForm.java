@@ -1,6 +1,7 @@
 package com.gft.formStep.controller.form;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gft.formStep.model.ArquivoControlePerdas;
 import com.gft.formStep.model.DadosSalvado;
 import com.gft.formStep.model.Salvado;
 
@@ -8,38 +9,47 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class DadosSalvadoForm {
-    @NotNull(message = "testtest") @NotBlank(message = "test")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test")
     private String origem;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String causa;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String local;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String produto;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String qualidade;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
     private Double quantidade;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String meta;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
     private Long vagao;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
     private Long sindicancia;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String nome;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHoraCadastro;
-    @NotNull(message = "testtest") @NotBlank(message = "test2")
+    @NotNull(message = "testtest")
+    @NotBlank(message = "test2")
     private String observacao;
+    private List<ArquivoControlePerdas> arquivoControlePerdas;
 
-    public DadosSalvado convert(){
-        return new DadosSalvado(origem,causa,local,produto,qualidade,quantidade,meta,vagao,sindicancia,nome
-                ,dataHoraCadastro,observacao);
+    public DadosSalvado convert() {
+        return new DadosSalvado(origem, causa, local, produto, qualidade, quantidade, meta, vagao, sindicancia, arquivoControlePerdas);
     }
 
     public String getOrigem() {
@@ -138,4 +148,11 @@ public class DadosSalvadoForm {
         this.observacao = observacao;
     }
 
+    public List<ArquivoControlePerdas> getArquivoControlePerdas() {
+        return arquivoControlePerdas;
+    }
+
+    public void setArquivoControlePerdas(List<ArquivoControlePerdas> arquivoControlePerdas) {
+        this.arquivoControlePerdas = arquivoControlePerdas;
+    }
 }
