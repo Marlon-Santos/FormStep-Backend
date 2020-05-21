@@ -7,12 +7,10 @@ import com.gft.formStep.repository.SalvadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/salvado/cotacaoSalvado")
@@ -20,15 +18,18 @@ public class CotacaoSalvadoController {
     @Autowired
     private SalvadoRepository salvadoRepository;
 
-    @PostMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Salvado> cotacaoSalvadoPost(@RequestBody @Valid CotacaoSalvado cotacaoSalvado, UriComponentsBuilder uriBuilder) throws Exception {
-        Salvado salvado = new Salvado();
-        DadosSalvado dadosSalvado = new DadosSalvado();
-        salvado.setDadosSalvado(dadosSalvado);
-        salvado.setCotacaoSalvado(cotacaoSalvado);
-        salvadoRepository.save(salvado);
-        URI uri = uriBuilder.path("{id}").buildAndExpand(salvado.getId()).toUri();
-        return ResponseEntity.created(uri).body(salvado);
+    public ResponseEntity<Salvado> cotacaoSalvadoPost(@PathVariable Long id, @RequestBody @Valid CotacaoSalvado cotacaoSalvado) throws Exception {
+        Optional<Salvado> optionalSalvado = salvadoRepository.findById(id);
+        Salvado salvado;
+        if (optionalSalvado.isPresent()) {
+            salvado = optionalSalvado.get();
+            cotacaoSalvado.setId(salvado.getCotacaoSalvado().getId());
+            salvado.setCotacaoSalvado(cotacaoSalvado);
+            salvadoRepository.save(salvado);
+            return ResponseEntity.ok(salvado);
+        }
+        throw new Exception("error no put");
     }
 }

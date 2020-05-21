@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/salvado/dadosSalvado")
+@RequestMapping("api/salvado")
 public class SalvadoController {
     @Autowired
     private SalvadoRepository salvadoRepository;

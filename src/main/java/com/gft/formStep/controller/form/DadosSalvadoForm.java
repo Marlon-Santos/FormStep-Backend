@@ -37,15 +37,6 @@ public class DadosSalvadoForm {
     private Long vagao;
     @NotNull(message = "testtest")
     private Long sindicancia;
-    @NotNull(message = "testtest")
-    @NotBlank(message = "test2")
-    private String nome;
-    @NotNull(message = "testtest")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataHoraCadastro;
-    @NotNull(message = "testtest")
-    @NotBlank(message = "test2")
-    private String observacao;
     private List<ArquivoControlePerdas> arquivoControlePerdas;
 
     public DadosSalvado convert() {
@@ -68,9 +59,6 @@ public class DadosSalvadoForm {
         this.causa = causa;
     }
 
-    public void setDataHoraCadastro(Date dataHoraCadastro) {
-        this.dataHoraCadastro = dataHoraCadastro;
-    }
 
     public String getLocal() {
         return local;
@@ -128,25 +116,6 @@ public class DadosSalvadoForm {
         this.sindicancia = sindicancia;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Date getDataHoraCadastro() {
-        return dataHoraCadastro;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
 
     public List<ArquivoControlePerdas> getArquivoControlePerdas() {
         return arquivoControlePerdas;

@@ -21,6 +21,24 @@ public class ArquivoControlePerdas {
     @JsonIgnore
     @ManyToOne
     private CotacaoSalvado cotacaoSalvado;
+
+    public ArquivoControlePerdas() {
+    }
+
+    public ArquivoControlePerdas(byte[] nome, Date data, String observacao, DadosSalvado dadosSalvado) {
+        this.nome = nome;
+        this.data = data;
+        this.observacao = observacao;
+        this.dadosSalvado = dadosSalvado;
+    }
+
+    public ArquivoControlePerdas(byte[] nome, Date data, String observacao, CotacaoSalvado cotacaoSalvado) {
+        this.nome = nome;
+        this.data = data;
+        this.observacao = observacao;
+        this.cotacaoSalvado = cotacaoSalvado;
+    }
+
     public Long getId() {
         return id;
     }
